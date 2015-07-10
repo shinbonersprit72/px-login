@@ -49,5 +49,3 @@ GE Coding Style Guide
 [GE JS Developer's Guide](https://github.com/GeneralElectric/javascript)
 
 
-### Known Issues
-
