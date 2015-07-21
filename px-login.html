@@ -41,9 +41,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                     throw 'login url is not set';
                 }
                 if (!clientPath) {
-                    window.location.replace(this._loginUrl + '?redirectUri=' + location.href);
+                    window.location.replace(this._loginUrl + '?state=' + location.href);
                 }
-                window.location.replace(this._loginUrl + '?redirectUri=' + location.protocol + '://' + location.host + '/' + clientPath);
+                window.location.replace(this._loginUrl + '?state='+ clientPath.url);
             },
             logout: function () {
                 if (!this._logoutUrl) {
@@ -97,7 +97,6 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 logoutUrl: {
                     type: String,
                     value: '/logout'
-
                 },
                 defaultClientRoute: {
                     type: String,
@@ -105,6 +104,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 }
             },
             ready: function () {
+                this.userInfo = {};
                 var self = this;
                 window.px.auth.loginUrl = this.loginUrl;
                 window.px.auth.logoutUrl = this.logoutUrl;
