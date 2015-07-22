@@ -5,3 +5,6 @@ bower_components
 .idea
 reports
 css/noprefix
+favicon.ico
+npm-debug.log
+userinfo
