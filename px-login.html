@@ -14,9 +14,12 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 <dom-module id="px-login">
     <link rel="import" type="css" href="css/px-login.css"/>
     <template>
-        <button on-click="loginHandler" hidden$="{{userInfo.user_name}}">Sign In</button>
-        <button on-click="logoutHandler" hidden$="{{!userInfo.user_name}}">Log Out</button>
-        <div style="color:white" hidden$="{{!userInfo.user_name}}">{{userInfo.user_name}}</div>
+        <!--<div style="background-color:red; width:200px">-->
+          <button class="sign-in" on-click="loginHandler" hidden$="{{userInfo.user_name}}">Sign In</button>
+          <button class="sign-out" on-click="logoutHandler" hidden$="{{!userInfo.user_name}}">Log Out</button>
+          <div style="color:white" hidden$="{{!userInfo.user_name}}">{{userInfo.user_name}}</div>
+          <i id="signin-settings" hidden$="true" class="fa fa-cog"><i/>
+        <!--</div>-->
     </template>
 </dom-module>
 
@@ -112,6 +115,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 window.px.auth.getUserInfo().then(function (data) {
                     self.userInfo = data;
                 });
+                document.getElementById('signin-settings').classList.remove("style-scope");
             },
             loginHandler: function (event, detail, sender) {
                 window.px.auth.login();

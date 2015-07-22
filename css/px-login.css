@@ -58,3 +58,17 @@ in import paths
   background-color: #005cb9;
   color: white;
   font-family: "GE Sans", sans-serif; }
+.sign-in, .sign-out {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-family: "GE Sans", sans-serif;
+
+}
+#signin-settings {
+  color: #fff;
+  float: right;
+  position: relative;
+  padding-top: 5px;
+}
