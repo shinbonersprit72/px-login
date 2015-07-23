@@ -17,40 +17,39 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 
         <div id="login-wrapper">
           <span id="profile-wrapper">
-          <div id="auth" class="auth style-scope px-app-nav">
+          <div id="auth" class="auth style-scope px-app-nav" hidden$="{{userInfo.user_name}}">
             <ul id="userMenu" class="list-bare style-scope px-app-nav popover-arrow popover-arrow-right">
               <li class="style-scope px-app-nav">
-                <a href="#change-profile" class="style-scope px-app-nav">Change Profile</a>
+                <a href="#change-profile" class="style-scope px-app-nav"><span>Change Profile</span></a>
               </li>
               <li class="style-scope px-app-nav">
-                <a href="#edit-profile" class="style-scope px-app-nav">Edit Profile</a>
+                <a href="#edit-profile" class="style-scope px-app-nav"><span>Edit Profile</span></a>
               </li>
               <li class="style-scope px-app-nav">
-                <a href="#signout" class="style-scope px-app-nav">Sign out</a>
+                <a href="/logout" class="style-scope px-app-nav"><span>Sign out</span></a>
               </li>
             </ul>
           </div>
-
+          <i id="signin-user" class="fa fa-user"></i>
           <button class="sign-in" on-click="loginHandler" hidden$="{{userInfo.user_name}}">Sign In</button>
           <!--button class="sign-out" on-click="logoutHandler" hidden$="{{!userInfo.user_name}}">Log Out</button-->
-          <i id="signin-user" class="fa fa-user"></i>
           <span class="user-info" hidden$="{{!userInfo.user_name}}">{{userInfo.user_name}}</span>
-          <i id="signin-chevron" hidden$="true" class="fa fa-chevron-up"></i>
+          <i id="signin-chevron"  hidden$="{{!userInfo.user_name}}" class="fa fa-chevron-up"></i>
         </span>
           <span id="settings-wrapper">
-            <div id="auth2" class="auth style-scope px-app-nav">
+            <!--div id="auth2" class="auth style-scope px-app-nav">
               <ul id="userMenu" class="list-bare style-scope px-app-nav popover-arrow popover-arrow-right">
                 <li class="style-scope px-app-nav">
-                  <a href="#change-profile" class="style-scope px-app-nav">other </a>
+                  <a href="#change-profile" class="style-scope px-app-nav"><span>other</span></a>
                 </li>
                 <li class="style-scope px-app-nav">
-                  <a href="#edit-profile" class="style-scope px-app-nav">thing</a>
+                  <a href="#edit-profile" class="style-scope px-app-nav"><span>thing</span></a>
                 </li>
                 <li class="style-scope px-app-nav">
-                  <a href="#signout" class="style-scope px-app-nav">go</a>
+                  <a href="#signout" class="style-scope px-app-nav"><span>go</span></a>
                 </li>
               </ul>
-            </div>
+            </div-->
             <i id="signin-settings" hidden$="true" class="fa fa-cog"></i>
           </span>
         </div>
@@ -152,7 +151,17 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 });
                 document.getElementById('signin-settings').classList.remove("style-scope");
                 document.getElementById('signin-user').classList.remove("style-scope");
-                  document.getElementById('signin-chevron').classList.remove("style-scope");
+                document.getElementById('signin-chevron').classList.remove("style-scope");
+
+                //document.getElementById('signin-chevron').style("display:none");
+
+                var elm = document.getElementById('auth');
+                var li = elm.getElementsByTagName("ul")[0].getElementsByTagName("li")[2]
+                  console.log("li:", li);
+                    li.addEventListener( "click", function(event){
+                      if(event.preventDefault) event.preventDefault(); else event.returnValue = false;
+                      window.location.href = "/logout"
+                    })
             },
             loginHandler: function (event, detail, sender) {
                 window.px.auth.login();
