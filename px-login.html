@@ -19,12 +19,12 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
           <span id="profile-wrapper">
           <div id="auth" class="auth style-scope px-app-nav" hidden$="{{!userInfo.user_name}}">
             <ul id="userMenu" class="list-bare style-scope px-app-nav">
-              <li class="style-scope px-app-nav">
+              <!--<li class="style-scope px-app-nav">
                 <a href="#change-profile" class="style-scope px-app-nav"><span>Change Profile</span></a>
               </li>
               <li class="style-scope px-app-nav">
                 <a href="#edit-profile" class="style-scope px-app-nav"><span>Edit Profile</span></a>
-              </li>
+              </li>-->
               <li class="style-scope px-app-nav">
                 <a href="/logout" class="style-scope px-app-nav"><span>Sign out</span></a>
               </li>
@@ -162,7 +162,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                   document.getElementById('signin-chevron').classList.add("hidden-test");
                 }
                 var elm = document.getElementById('auth');
-                var li = elm.getElementsByTagName("ul")[0].getElementsByTagName("li")[2]
+                var li = elm.getElementsByTagName("ul")[0].getElementsByTagName("li")[0]
                     li.addEventListener( "click", function(event){
                       if(event.preventDefault) event.preventDefault(); else event.returnValue = false;
                       window.location.href = "/logout"
