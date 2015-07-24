@@ -59,7 +59,9 @@ in import paths
   color: white;
   font-family: "GE Sans", sans-serif; }
 
-
+button:focus {
+  outline:0;
+}
 
 .auth.px-app-nav ul.px-app-nav {
     margin-right: 1em;
@@ -202,6 +204,7 @@ in import paths
 }
 #settings-wrapper {
   right: 15px;
+  padding-bottom: 2px;
 }
 #profile-wrapper, #settings-wrapper, #login-wrapper {
   bottom: 0;
