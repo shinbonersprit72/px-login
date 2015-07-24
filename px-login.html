@@ -17,7 +17,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 
         <div id="login-wrapper">
           <span id="profile-wrapper">
-          <div id="auth" class="auth style-scope px-app-nav" hidden$="{{userInfo.user_name}}">
+          <div id="auth" class="auth style-scope px-app-nav" hidden$="{{!userInfo.user_name}}">
             <ul id="userMenu" class="list-bare style-scope px-app-nav popover-arrow popover-arrow-right">
               <li class="style-scope px-app-nav">
                 <a href="#change-profile" class="style-scope px-app-nav"><span>Change Profile</span></a>
@@ -32,7 +32,6 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
           </div>
           <i id="signin-user" class="fa fa-user"></i>
           <button class="sign-in" on-click="loginHandler" hidden$="{{userInfo.user_name}}">Sign In</button>
-          <!--button class="sign-out" on-click="logoutHandler" hidden$="{{!userInfo.user_name}}">Log Out</button-->
           <span class="user-info" hidden$="{{!userInfo.user_name}}">{{userInfo.user_name}}</span>
           <i id="signin-chevron"  hidden$="{{!userInfo.user_name}}" class="fa fa-chevron-up"></i>
         </span>
@@ -148,20 +147,27 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 window.px.auth.userInfoUrl = this.userInfoUrl;
                 window.px.auth.getUserInfo().then(function (data) {
                     self.userInfo = data;
+                    console.log("hide?", self.userInfo);
+                    if(self.userInfo.user_name){
+                      console.log("hide?", self.userInfo);
+                      document.getElementById('signin-chevron').classList.remove("hidden-test");
+                    }
                 });
                 document.getElementById('signin-settings').classList.remove("style-scope");
                 document.getElementById('signin-user').classList.remove("style-scope");
                 document.getElementById('signin-chevron').classList.remove("style-scope");
-
-                //document.getElementById('signin-chevron').style("display:none");
-
+                console.log("hide?", self.userInfo);
+                if(!self.userInfo.user_name){
+                  console.log("hide?", self.userInfo);
+                  document.getElementById('signin-chevron').classList.add("hidden-test");
+                }
                 var elm = document.getElementById('auth');
                 var li = elm.getElementsByTagName("ul")[0].getElementsByTagName("li")[2]
-                  console.log("li:", li);
                     li.addEventListener( "click", function(event){
                       if(event.preventDefault) event.preventDefault(); else event.returnValue = false;
                       window.location.href = "/logout"
                     })
+                    console.log("ready")
             },
             loginHandler: function (event, detail, sender) {
                 window.px.auth.login();
