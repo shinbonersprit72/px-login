@@ -20,8 +20,6 @@ common/abstract rules go in px-login-sketch.scss, not in this file.
 */
 
 @import 'px-login-sketch.scss';
-@import 'px-iconography-design/_base.iconography.scss';
-
 
 button:focus {
   outline:0;
@@ -130,10 +128,7 @@ button:focus {
 .user-info {
     display:inline-block;
 }
-.hidden-test{
-  display:none;
-  opacity: 0;
-}
+
 #auth{
   /*display:none;*/
   opacity:0;

@@ -17,21 +17,20 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 
         <div id="login-wrapper">
           <span id="profile-wrapper">
-          <div id="auth" class="auth " hidden$="{{!userInfo.user_name}}">
+          <div id="auth" class="auth " hidden="{{!userInfo.user_name}}">
             <ul id="userMenu" class="list-bare ">
-              <!-- <li on-click="logout"> -->
-              <li>
+              <li on-click="logoutHandler">
                 <a href="/logout" class=""><span>Sign out</span></a>
               </li>
             </ul>
           </div>
           <i id="signin-user" class="fa fa-user"></i>
-          <button class="sign-in" on-click="loginHandler" hidden$="{{userInfo.user_name}}">Sign In</button>
-          <span class="user-info" hidden$="{{!userInfo.user_name}}">{{userInfo.user_name}}</span>
-          <i id="signin-chevron"  hidden$="{{!userInfo.user_name}}" class="fa fa-chevron-up"></i>
+          <button class="sign-in" on-click="loginHandler" hidden="{{userInfo.user_name}}">Sign In</button>
+          <span class="user-info" hidden="{{!userInfo.user_name}}">{{userInfo.user_name}}</span>
+          <i style="color:#fff;" id="signinchevron" hidden="{{!userInfo.user_name}}" class="fa fa-chevron-up"></i>
         </span>
           <span id="settings-wrapper">
-            <i id="signin-settings" hidden$="true" class="fa fa-cog"></i>
+            <i id="signin-settings" hidden="true" class="fa fa-cog"></i>
           </span>
         </div>
 
@@ -59,9 +58,11 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                     throw 'login url is not set';
                 }
                 if (!clientPath) {
-                    window.location.replace(this._loginUrl + '?state=' + location.href);
+                  window.location.replace(this._loginUrl + '?state=' + location.href);
                 }
+                //this causes an error, what should it do?
                 window.location.replace(this._loginUrl + '?state='+ clientPath.url);
+
             },
             logout: function () {
                 if (!this._logoutUrl) {
@@ -120,38 +121,30 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 defaultClientRoute: {
                     type: String,
                     value: '/about'
+                },
+                userInfo: {
+                  type: Object,
+                  value: function(){
+                    return {};
+                  }
                 }
             },
             ready: function () {
-                this.userInfo = {};
                 var self = this;
                 window.px.auth.loginUrl = this.loginUrl;
                 window.px.auth.logoutUrl = this.logoutUrl;
                 window.px.auth.userInfoUrl = this.userInfoUrl;
                 window.px.auth.getUserInfo().then(function (data) {
-                    self.userInfo = data;
-                    if(self.userInfo.user_name){
-                      document.getElementById('signin-chevron').classList.remove("hidden-test");
-                    }
+                  self.userInfo = data;
                 });
-                if(!self.userInfo.user_name){
-                  document.getElementById('signin-chevron').classList.add("hidden-test");
-                }
-                var elm = document.getElementById('auth');
-
-                var li = elm.getElementsByTagName("ul")[0].getElementsByTagName("li")[0]
-                li.addEventListener( "click", function(event){
-                  if(event.preventDefault) event.preventDefault(); else event.returnValue = false;
-                  window.location.href = "/logout"
-                })
-
             },
             loginHandler: function (event, detail, sender) {
-                window.px.auth.login();
+              window.px.auth.login();
             },
 
             logoutHandler: function (event, detail, sender) {
-                window.px.auth.logout();
+              window.px.auth.logout();
+              console.log(this.userInfo);
             }
         });
 
