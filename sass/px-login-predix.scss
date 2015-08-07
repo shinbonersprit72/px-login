@@ -20,16 +20,156 @@ common/abstract rules go in px-login-sketch.scss, not in this file.
 */
 
 @import 'px-login-sketch.scss';
+@import 'px-iconography-design/_base.iconography.scss';
 
-.circle {
-  border-style: none;
-  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem 0 rgba(0,0,0,0.5);
-  -moz-box-shadow: 0.2rem 0.2rem 0.2rem 0 rgba(0,0,0,0.5);
-  box-shadow: 0.2rem 0.2rem 0.2rem 0 rgba(0,0,0,0.5);
+
+button:focus {
+  outline:0;
 }
 
-.counter {
-  background-color: rgb(0,92,185);
-  color: white;
+.auth ul {
+    margin-right: 1em;
+    margin-bottom: .5em;
+    border-radius: 3px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    background-color: #fff;
+}
+
+.auth ul li{
+  width:100%;
+}
+.auth ul li a {
+    display: block;
+    padding-right: .5em;
+    padding-left: .5em;
+    color: #2b2b2b;
+}
+.auth ul li a{
+  padding-left:20px;
+  padding-right:20px;
+  color:#fff;
+}
+.auth ul li a:hover{
+  color:#fff;
+  background-color: #005bb9;
+}
+
+.auth ul li a:hover span{
+  color:#fff;
+  background-color: #005bb9;
+}
+
+.auth ul li a span{
+  color:#2b2b2b;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.popover-arrow {
+	position: relative;
+	background: #fff;
+  z-index: 10;
+}
+.popover-arrow:after {
+	top: 100%;
+	right: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+
+  display: inline-block;
+	pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #fff;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.popover-arrow-right:after{
+  right:20%;
+}
+
+.popover-arrow-left:after{
+  right:80%;
+}
+
+#signin-settings {
+  color: #fff;
+  float: right;
+  position: relative;
+  padding-top: 5px;
+
+}
+#signin-chevron {
+  color: #fff;
+  position: relative;
+  padding-top: 5px;
+}
+
+#signin-user{
+  color: #fff;
+  padding-top: 5px;
+  margin-right: 5px;
+}
+
+#login-wrapper{
+  width:200px;
+}
+
+.sign-in, .sign-out, .user-info {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 15px;
   font-family: "GE Sans", sans-serif;
+}
+
+.user-info {
+    display:inline-block;
+}
+.hidden-test{
+  display:none;
+  opacity: 0;
+}
+#auth{
+  /*display:none;*/
+  opacity:0;
+  -webkit-transition: opacity 0.25s ease-out;
+       -moz-transition: opacity 0.25s ease-out;
+        -ms-transition: opacity 0.25s ease-out;
+         -o-transition: opacity 0.25s ease-out;
+            transition: opacity 0.25s ease-out;
+
+
+}
+#profile-wrapper:hover #auth{
+    opacity:1;
+}
+#auth2{
+
+  opacity:0;
+  -webkit-transition: opacity 0.25s ease-out;
+       -moz-transition: opacity 0.25s ease-out;
+        -ms-transition: opacity 0.25s ease-out;
+         -o-transition: opacity 0.25s ease-out;
+            transition: opacity 0.25s ease-out;
+
+
+}
+#settings-wrapper:hover #auth2{
+    opacity:1;
+}
+#profile-wrapper {
+  float: left;
+}
+#settings-wrapper {
+  right: 15px;
+  padding-bottom: 2px;
+}
+#profile-wrapper, #settings-wrapper, #login-wrapper {
+  bottom: 0;
+  position: absolute;
 }

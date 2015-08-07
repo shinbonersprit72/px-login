@@ -1,24 +1,25 @@
 {
-    "name": "px-login",
-    "version": "0.0.1",
-    "main": [
-        "px-login.html"
-    ],
-    "ignore": [
-        ".*",
-        "npm-debug.log",
-        "Gruntfile.js",
-        "sass",
-        "bower_components",
-        "node_modules",
-        "test"
-    ],
-    "dependencies": {
-        "polymer": "~v1.0.3",
-        "px-theme": "https://github.build.ge.com/PXc/px-theme.git#~v0.2.6"
-    },
-    "devDependencies": {
-        "iron-component-page" : "PolymerElements/iron-component-page#~v1.0.4",
-        "px-starter-kit-design": "https://github.build.ge.com/PXd/px-starter-kit-design.git#~0.4.1"
-    }
+  "name": "px-login",
+  "version": "0.0.1",
+  "main": [
+    "px-login.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test"
+  ],
+  "dependencies": {
+    "polymer": "~v1.0.3",
+    "px-theme": "https://github.build.ge.com/PXc/px-theme.git#~v0.2.6"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#~v1.0.4",
+    "px-starter-kit-design": "https://github.build.ge.com/PXd/px-starter-kit-design.git#~0.4.1",
+    "px-iconography-design": "https://github.build.ge.com/pxd/px-iconography-design.git#~0.2.4"
+  }
 }
