@@ -12,29 +12,27 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 @demo demo.html
 -->
 <dom-module id="px-login">
-    <link rel="import" type="css" href="css/px-login.css"/>
-    <template>
-
-        <div id="login-wrapper">
-          <span id="profile-wrapper">
-          <div id="auth" class="auth " hidden="{{!userInfo.user_name}}">
-            <ul id="userMenu" class="list-bare ">
-              <li on-click="logoutHandler">
-                <a href="/logout" class=""><span>Sign out</span></a>
-              </li>
-            </ul>
-          </div>
-          <i id="signin-user" class="fa fa-user"></i>
-          <button class="sign-in" on-click="loginHandler" hidden="{{userInfo.user_name}}">Sign In</button>
-          <span class="user-info" hidden="{{!userInfo.user_name}}">{{userInfo.user_name}}</span>
-          <i style="color:#fff;" id="signinchevron" hidden="{{!userInfo.user_name}}" class="fa fa-chevron-up"></i>
-        </span>
-          <span id="settings-wrapper">
-            <i id="signin-settings" hidden="true" class="fa fa-cog"></i>
-          </span>
-        </div>
-
-    </template>
+  <link rel="import" type="css" href="css/px-login.css"/>
+  <template>
+    <div id="login-wrapper">
+      <span hidden="{{userInfo.user_name}}">
+        <i class="fa fa-user"></i>
+        <button class="btn btn--bare text" on-click="loginHandler">Sign In</button>
+      </span>
+      <span hidden="{{!userInfo.user_name}}">
+        <i class="fa fa-user"></i>
+        <button class="btn btn--bare">
+          <span class="text">{{userInfo.user_name}}</span>
+          <i class="fa fa-chevron-down"></i>
+          <ul class="dropdown-menu list-bare">
+            <li on-click="logoutHandler">
+              <a href="/logout" class="">Sign out</a>
+            </li>
+          </ul>
+        </button>
+      </div>
+    </span>
+  </template>
 </dom-module>
 
 <script>

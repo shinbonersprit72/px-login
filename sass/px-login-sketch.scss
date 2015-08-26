@@ -38,6 +38,10 @@ in import paths
 @import 'px-iconography-design/_base.iconography.scss';
 
 // Component
+$inuit-enable-btn--bare : true;
+@import "px-buttons-design/_objects.buttons.scss";
+
+@import "px-list-bare-design/_objects.list-bare.scss";
 
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";
