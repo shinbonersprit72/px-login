@@ -20,12 +20,7 @@ module.exports = function (grunt) {
                 importOnce: {
                   index: true,
                   bower: true
-                },
-                 /*
-                  See https://github.sw.ge.com/pxc/px-getting-started#a-note-about-relative-import-paths for an explanation
-                  of the contents of the includePaths option for Sass
-                 */
-                includePaths: ['bower_components/*']
+                }
             },
             dist: {
                 files: {
@@ -70,7 +65,7 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
-                tasks: ['sass'],
+                tasks: ['sass', 'autoprefixer'],
                 options: {
                     interrupt: true
                 }
