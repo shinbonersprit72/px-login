@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
+
 <!--
 Element providing a login/logout button that integrates nicely with Cloud Foundry's UAA.
 
@@ -14,24 +15,26 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 <dom-module id="px-login">
   <link rel="import" type="css" href="css/px-login.css"/>
   <template>
-    <div id="login-wrapper">
-      <span hidden="{{userInfo.user_name}}">
-        <i class="fa fa-user"></i>
-        <button class="btn btn--bare text" on-click="loginHandler">Sign In</button>
-      </span>
-      <span hidden="{{!userInfo.user_name}}">
-        <i class="fa fa-user"></i>
-        <button class="btn btn--bare">
-          <span class="text">{{userInfo.user_name}}</span>
-          <i class="fa fa-chevron-down"></i>
-          <ul class="dropdown-menu list-bare">
-            <li on-click="logoutHandler">
-              <a href="/logout" class="">Sign out</a>
-            </li>
-          </ul>
+    <div class="login">
+      <div hidden="{{userInfo.user_name}}">
+        <button class="btn btn--bare" on-click="loginHandler">
+          <i class="fa fa-user text--center u-mr--"></i>
+          <span>Sign In</span>
         </button>
       </div>
-    </span>
+      <div hidden="{{!userInfo.user_name}}">
+        <button class="btn btn--bare">
+          <i class="fa fa-user text--center"></i>
+          <span class="u-mh--">{{userInfo.user_name}}</span>
+          <i class="fa fa-angle-up"></i>
+        </button>
+        <ul class="dropdown-menu list-bare">
+          <li on-click="logoutHandler">
+            <a href="/logout">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </template>
 </dom-module>
 
@@ -135,6 +138,31 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 window.px.auth.getUserInfo().then(function (data) {
                   self.userInfo = data;
                 });
+                
+                if (window.innerHeight > document.body.clientHeight) {
+                  this.toggleClass('sticky', true)
+                } else {
+                  this.toggleClass('sticky', false);
+                }
+                
+                addEventListener('navHeightChanged', function() {
+                  if (window.innerHeight > document.body.clientHeight) {
+                    self.toggleClass('sticky', true);
+                  } else {
+                    self.toggleClass('sticky', false);
+                  }
+                });
+                  
+                window.onscroll = scroll;
+
+                function scroll () {
+                  if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
+                    self.toggleClass('sticky', true);
+                  } else {
+                    self.toggleClass('sticky', false);
+                  }
+                };
+                
             },
             loginHandler: function (event, detail, sender) {
               window.px.auth.login();
