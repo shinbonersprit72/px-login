@@ -15,13 +15,13 @@
   ],
   "dependencies": {
     "polymer": "~v1.0.3",
-    "px-theme": "https://github.build.ge.com/PXc/px-theme.git#~v0.2.6",
-    "px-list-bare-design": "https://github.build.ge.com/PXd/px-list-bare-design.git#~0.2.8",
-    "px-button-group-design": "https://github.build.ge.com/PXd/px-button-group-design.git#~0.3.6"
+    "px-iconography-design": "https://github.build.ge.com/pxd/px-iconography-design.git#~0.2.4",
+    "px-theme": "https://github.build.ge.com/PXc/px-theme.git#~v0.2.6"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#~v1.0.4",
-    "px-starter-kit-design": "https://github.build.ge.com/PXd/px-starter-kit-design.git#~0.4.1",
-    "px-iconography-design": "https://github.build.ge.com/pxd/px-iconography-design.git#~0.2.4"
+    "px-list-bare-design": "https://github.build.ge.com/PXd/px-list-bare-design.git#~0.2.8",
+    "px-buttons-design": "https://github.build.ge.com/PXd/px-buttons-design.git#~0.4.12",
+    "px-starter-kit-design": "https://github.build.ge.com/PXd/px-starter-kit-design.git#~0.4.5"
   }
 }
