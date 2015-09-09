@@ -21,49 +21,19 @@ common/abstract rules go in px-login-sketch.scss, not in this file.
 
 @import 'px-login-sketch.scss';
 
-button:focus {
-  outline: 0;
+:host {
+  color: $white;
+  background-color: var(--px-app-nav-background-color);
 }
 
-#login-wrapper {
-  padding: 4px;
-  position: relative;
-  line-height: 40px;
-  border-top: 1px solid $gray7;
-  color: white;
-}
-
-#login-wrapper .fa {
-  width: 19px;
-}
-
-ul.dropdown-menu {
-  position: absolute;
-  top: 41px;
-  border-radius: 3px;
-  background-color: #fff;
-
-  opacity: 0;
-  -webkit-transition: opacity 0.25s ease-out;
-     -moz-transition: opacity 0.25s ease-out;
-      -ms-transition: opacity 0.25s ease-out;
-       -o-transition: opacity 0.25s ease-out;
-          transition: opacity 0.25s ease-out;
-}
-
-#login-wrapper:hover .dropdown-menu {
-    opacity: 1;
-}
-
-ul.dropdown-menu li a {
-    display: block;
-    padding: 6px 10px;
-    line-height: 19px;
-    color: #2b2b2b;
-    text-decoration: none;
-}
-
-ul.dropdown-menu li a:hover {
-  color:#fff;
-  background-color: #005bb9;
+.dropdown-menu {
+  border-color: $gray5;
+  background-color: $gray1;
+  li a {
+    color: $gray9;
+    &:hover {
+      color: $white;
+      background-color: $primary-blue;
+    }
+  }
 }
