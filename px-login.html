@@ -140,9 +140,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 });
                 
                 if (window.innerHeight > document.body.clientHeight) {
-                  this.toggleClass('sticky', true)
+                  this.toggleClass('sticky', false)
                 } else {
-                  this.toggleClass('sticky', false);
+                  this.toggleClass('sticky', true);
                 }
                 
                 addEventListener('navHeightChanged', function() {
@@ -162,8 +162,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                     self.toggleClass('sticky', false);
                   }
                 };
-                
+
             },
+            
             loginHandler: function (event, detail, sender) {
               window.px.auth.login();
             },
