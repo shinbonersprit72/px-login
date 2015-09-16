@@ -26,6 +26,13 @@ common/abstract rules go in px-login-sketch.scss, not in this file.
   background-color: var(--px-app-nav-background-color);
 }
 
+.login {
+  background-color: inherit;
+  > div {
+    border-top-color: $gray8;
+  }
+}
+
 .dropdown-menu {
   border-color: $gray5;
   background-color: $gray1;
