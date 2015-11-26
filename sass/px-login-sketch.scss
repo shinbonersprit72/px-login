@@ -59,6 +59,14 @@ $inuit-enable-btn--bare       : true;
     border-top: 1px solid;
     padding-top: $inuit-base-spacing-unit--tiny;
   }
+  ul li {
+    padding-left: 0.533rem;
+    color: $gray9;
+    &:hover {
+      color: $white;
+      background-color: $primary-blue;
+    }
+  }
 }
 
 :host(.sticky) > .login {
@@ -75,6 +83,7 @@ span + .fa {
 
 .dropdown-menu {
   position: absolute;
+  cursor: pointer;
   bottom: #{$inuit-base-spacing-unit * 3.5};
   width: calc(#{calculateRem(219px)} - #{$inuit-base-spacing-unit * 4});
   border: 1px solid;
