@@ -15,7 +15,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 <dom-module id="px-login">
   <link rel="import" type="css" href="css/px-login.css"/>
   <template>
-    <div class="login">
+    <div id="logincontainer" class="login">
       <template is="dom-if" if="{{!userInfo.user_name}}">
         <button class="btn btn--bare" on-click="loginHandler">
           <i class="fa fa-user text--center u-mr--"></i>
@@ -137,13 +137,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                   self.userInfo = data;
                 });
 
-                addEventListener('navHeightChanged', function() {
-                  if (window.innerHeight > document.body.clientHeight - 60) {
-                    self.toggleClass('sticky', true);
-                  } else {
-                    self.toggleClass('sticky', false);
-                  }
-                });
+                document.body.addEventListener('nav-height-changed', this._onNavHeightChanged.bind(this));
+                document.body.addEventListener('nav-collapsing', this._onNavCollapsing.bind(this));
+                document.body.addEventListener('nav-expanded', this._onNavExpanded.bind(this));
 
                 window.onscroll = scroll;
 
@@ -154,6 +150,19 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                     self.toggleClass('sticky', false);
                   }
                 };
+            },
+            _onNavExpanded: function(){
+              this.toggleClass('login--collapsed', false, this.$.logincontainer);
+            },
+            _onNavCollapsing: function(){
+              this.toggleClass('login--collapsed', true, this.$.logincontainer);
+            },
+            _onNavHeightChanged: function() {
+              if (window.innerHeight > document.body.clientHeight - 60) {
+                this.toggleClass('sticky', true);
+              } else {
+                this.toggleClass('sticky', false);
+              }
             },
             loginHandler: function (event, detail, sender) {
               window.px.auth.login();
