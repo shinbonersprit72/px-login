@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../iron-ajax/iron-ajax.html"/>
 
 <!--
 Element providing a login/logout button that integrates nicely with Cloud Foundry's UAA.
@@ -30,146 +31,145 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
         </button>
         <ul class="dropdown-menu list-bare">
           <li on-click="logoutHandler">Sign Out</li>
+          <template is="dom-repeat" items="{{menuItems}}">
+            <li on-click="menuItemHandler" url="{{item.url}}">{{item.label}}</li>
+          </template>
         </ul>
       </template>
     </div>
+    <iron-ajax
+      id="userInfoAjax"
+      auto
+      url="{{userInfoUrl}}"
+      handle-as="json"
+      on-response="handleAjaxResponse"
+      on-error="handleAjaxError"
+      last-response="{{userInfo}}"
+      ></iron-ajax>
   </template>
 </dom-module>
 
 <script>
-    (function () {
-        window.px = window.px || {};
-        px.auth = px.auth || {
-            _loginUrl: null,
-            set loginUrl(val) {
-                this._loginUrl = val;
-            },
-            _logoutUrl: null,
-            set logoutUrl(val) {
-                this._logoutUrl = val;
-            },
-            _userInfoUrl: null,
-            set userInfoUrl(val) {
-                this._userInfoUrl = val;
-            },
-            login: function (clientPath) {
-                if (!this._loginUrl) {
-                    throw 'login url is not set';
-                }
-                if (!clientPath) {
-                  window.location.replace(this._loginUrl + '?state=' + location.href);
-                } else {
-                  //this causes an error, what should it do?
-                  window.location.replace(this._loginUrl + '?state='+ clientPath.url);
-                }
-            },
-            logout: function () {
-                if (!this._logoutUrl) {
-                    throw 'login url is not set';
-                }
-                window.location.replace(this._logoutUrl);
-            },
-            getUserInfo: function () {
-                var self = this;
-                if (!this._userInfoUrl) {
-                    throw 'userInfo url is not set';
-                }
+  Polymer({
 
-                return new Promise(function (resolve, reject) {
-                    var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4) {
-                            if (xmlhttp.status == 200) {
-                                try {
-                                    resolve(JSON.parse(xmlhttp.responseText));
-                                }
-                                catch (e) {
-                                    reject(e);
-                                }
-                            }
-                            else {
-                                reject();
-                            }
-                        }
-                    }
-                    xmlhttp.open("GET", self._userInfoUrl, true);
-                    xmlhttp.send();
-                });
-            },
-            isAuthenticated: function () {
-                return this.getUserInfo();
-            }
+    is: 'px-login',
+
+    properties: {
+        loginUrl: {
+            type: String,
+            value: '/login'
+        },
+        userInfoUrl: {
+            type: String,
+            value: '/userinfo.json'
+        },
+        logoutUrl: {
+            type: String,
+            value: '/logout'
+        },
+        defaultClientRoute: {
+            type: String,
+            value: '/about'
+        },
+        userInfo: {
+          type: Object,
+          value: function() {
+            return {};
+          }
+        },
+        isAuthenticated: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+        /*
+        Set
+        * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
+        */
+        pollInterval: {
+          type: Number,
+          value: 10000
+        },
+        menuItems: {
+          type: Array,
+          value: function() {
+            return [];
+          }
+        }
+    },
+
+    ready: function () {
+        document.body.addEventListener('nav-height-changed', this._onNavHeightChanged.bind(this));
+        document.body.addEventListener('nav-collapsing', this._onNavCollapsing.bind(this));
+        document.body.addEventListener('nav-expanded', this._onNavExpanded.bind(this));
+        var self = this;
+        window.onscroll = function() {
+          if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
+            self.toggleClass('sticky', true);
+          } else {
+            self.toggleClass('sticky', false);
+          }
         };
-      })();
+        console.log(this.menuItems);
+    },
 
-        Polymer({
-            is: 'px-login',
-            properties: {
-                loginUrl: {
-                    type: String,
-                    value: '/login'
-                },
-                userInfoUrl: {
-                    type: String,
-                    value: '/userinfo'
-                },
-                logoutUrl: {
-                    type: String,
-                    value: '/logout'
-                },
-                defaultClientRoute: {
-                    type: String,
-                    value: '/about'
-                },
-                userInfo: {
-                  type: Object,
-                  value: function(){
-                    return {};
-                  }
-                }
-            },
-            ready: function () {
-                var self = this;
-                window.px.auth.loginUrl = this.loginUrl;
-                window.px.auth.logoutUrl = this.logoutUrl;
-                window.px.auth.userInfoUrl = this.userInfoUrl;
-                window.px.auth.getUserInfo().then(function (data) {
-                  self.userInfo = data;
-                });
+    _onNavExpanded: function(){
+      this.toggleClass('login--collapsed', false, this.$.logincontainer);
+    },
 
-                document.body.addEventListener('nav-height-changed', this._onNavHeightChanged.bind(this));
-                document.body.addEventListener('nav-collapsing', this._onNavCollapsing.bind(this));
-                document.body.addEventListener('nav-expanded', this._onNavExpanded.bind(this));
+    _onNavCollapsing: function(){
+      this.toggleClass('login--collapsed', true, this.$.logincontainer);
+    },
 
-                window.onscroll = scroll;
+    _onNavHeightChanged: function() {
+      if (window.innerHeight > document.body.clientHeight - 60) {
+        this.toggleClass('sticky', true);
+      } else {
+        this.toggleClass('sticky', false);
+      }
+    },
 
-                function scroll () {
-                  if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
-                    self.toggleClass('sticky', true);
-                  } else {
-                    self.toggleClass('sticky', false);
-                  }
-                };
-            },
-            _onNavExpanded: function(){
-              this.toggleClass('login--collapsed', false, this.$.logincontainer);
-            },
-            _onNavCollapsing: function(){
-              this.toggleClass('login--collapsed', true, this.$.logincontainer);
-            },
-            _onNavHeightChanged: function() {
-              if (window.innerHeight > document.body.clientHeight - 60) {
-                this.toggleClass('sticky', true);
-              } else {
-                this.toggleClass('sticky', false);
-              }
-            },
-            loginHandler: function (event, detail, sender) {
-              window.px.auth.login();
-            },
-            logoutHandler: function (event, detail, sender) {
-              event.stopPropagation();
-              window.px.auth.logout();
-            }
-        });
+    loginHandler: function (event, detail, sender) {
+      this.login();
+    },
+
+    logoutHandler: function (event, detail, sender) {
+      event.stopPropagation();
+      this.logout();
+    },
+
+    handleAjaxResponse: function(request) {
+      console.log(request.detail.response);
+      this.set('userInfo', request.detail.response);
+      this.set('isAuthenticated', true);
+      var self = this;
+      setTimeout(function() {
+        self.$.userInfoAjax.generateRequest();
+      }, this.pollInterval);
+    },
+
+    handleAjaxError: function(error,a,b,c) {
+      this.login();
+    },
+
+    login: function (clientPath) {
+        if (!this.loginUrl) {
+            throw 'login url is not set';
+        }
+        if (!clientPath) {
+          window.location.replace(this.loginUrl + '?state=' + location.href);
+        } else {
+          //this causes an error, what should it do?
+          window.location.replace(this.loginUrl + '?state='+ clientPath.url);
+        }
+    },
+
+    logout: function () {
+        if (!this.logoutUrl) {
+            throw 'login url is not set';
+        }
+        window.location.replace(this.logoutUrl);
+    }
+
+  });
 </script>
