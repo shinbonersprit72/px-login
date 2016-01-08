@@ -29,6 +29,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
           <i class="fa fa-angle-up"></i>
         </button>
         <ul class="dropdown-menu list-bare">
+          <template is="dom-repeat" items="{{menuItems}}">
+            <li on-click="menuItemHandler" url="{{item.url}}">{{item.label}}</li>
+          </template>
           <li on-click="logoutHandler">Sign Out</li>
         </ul>
       </template>
@@ -126,6 +129,12 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                   value: function(){
                     return {};
                   }
+                },
+                menuItems: {
+                    type: Array,
+                    value: function() {
+                        return [];
+                    }
                 }
             },
             ready: function () {
@@ -165,11 +174,23 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
               }
             },
             loginHandler: function (event, detail, sender) {
-              window.px.auth.login();
+                event.stopPropagation();
+                this.login();
             },
             logoutHandler: function (event, detail, sender) {
-              event.stopPropagation();
-              window.px.auth.logout();
+                event.stopPropagation();
+                this.logout();
+            },
+            login: function(){
+                window.px.auth.login();
+            },
+            logout: function(){
+                window.px.auth.logout();
+            },
+            menuItemHandler: function(event){
+                if (event.srcElement.url){
+                    window.location = event.srcElement.url;
+                }
             }
         });
 </script>
