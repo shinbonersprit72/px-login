@@ -88,7 +88,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                         if (xmlhttp.readyState == 4) {
                             if (xmlhttp.status == 200) {
                                 try {
-                                    resolve(JSON.parse(xmlhttp.responseText));
+                                    var userInfo = JSON.parse(xmlhttp.responseText);
+                                    document.querySelector('px-login').userInfo = userInfo;
+                                    resolve(userInfo);
                                 }
                                 catch (e) {
                                     reject(e);
@@ -133,7 +135,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                   value: function(){
                     return {};
                   }
-                },
+                }
                 /**
                  * This menu items will display above sign out after login
                  * e.g. user setting, user preference menu item
@@ -153,9 +155,6 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 window.px.auth.loginUrl = this.loginUrl;
                 window.px.auth.logoutUrl = this.logoutUrl;
                 window.px.auth.userInfoUrl = this.userInfoUrl;
-                window.px.auth.getUserInfo().then(function (data) {
-                  self.userInfo = data;
-                });
 
                 document.body.addEventListener('nav-height-changed', this._onNavHeightChanged.bind(this));
                 document.body.addEventListener('nav-collapsing', this._onNavCollapsing.bind(this));
