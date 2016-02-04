@@ -17,6 +17,15 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 @demo demo.html
 -->
 <dom-module id="px-login">
+  <script>
+    // Conditional loading of es6-promise polyfill
+    if(typeof ES6Promise === "undefined"){
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = '../es6-promise/dist/es6-promise.min.js';
+      document.head.appendChild(script);
+    };
+  </script>
   <link rel="import" type="css" href="css/px-login.css"/>
   <template>
     <div id="logincontainer" class="login">
