@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "polymer": "~v1.2.3",
-    "px-theme": "https://github.com/PredixDev/px-theme.git#~v0.4.0",
+    "px-theme": "https://github.com/PredixDev/px-theme.git#~v0.6.1",
     "es6-promise": "https://github.com/jakearchibald/es6-promise.git#2.3.0"
   },
   "devDependencies": {
