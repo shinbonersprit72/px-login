@@ -24,7 +24,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
       script.async = true;
       script.src = '../es6-promise/dist/es6-promise.min.js';
       document.head.appendChild(script);
-    };
+    }
   </script>
   <link rel="import" type="css" href="css/px-login.css"/>
   <template>
@@ -94,8 +94,8 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 return new Promise(function (resolve, reject) {
                     var xmlhttp = new XMLHttpRequest();
                     xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4) {
-                            if (xmlhttp.status == 200) {
+                        if (xmlhttp.readyState === 4) {
+                            if (xmlhttp.status === 200) {
                                 try {
                                     resolve(JSON.parse(xmlhttp.responseText));
                                 }
@@ -107,7 +107,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                                 reject();
                             }
                         }
-                    }
+                    };
                     xmlhttp.open("GET", self._userInfoUrl, true);
                     xmlhttp.send();
                 });
@@ -172,13 +172,13 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 
                 window.onscroll = scroll;
 
-                function scroll () {
+                function scroll() {
                   if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
                     self.toggleClass('sticky', true);
                   } else {
                     self.toggleClass('sticky', false);
                   }
-                };
+                }
             },
             _onNavExpanded: function(){
               this.toggleClass('login--collapsed', false, this.$.logincontainer);
