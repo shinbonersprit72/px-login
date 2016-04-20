@@ -29,7 +29,7 @@ Starts a local server. Navigate to the root of that server (e.g. http://localhos
 
 ## documentation
 
-View the demo [here](https://predixdev.github.io/px-login/px-login/demo.html).
+Read the full API and view the demo [here](https://predixdev.github.io/px-login).
 
 GE Coding Style Guide
 ---------------------
