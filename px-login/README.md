@@ -3,7 +3,7 @@ Px-Login
 
 ## Overview
 
-Px-Login is a Predix Experience ('Px') component
+Px-Login is a Predix UI component
 
 ## Getting Started
 
@@ -27,21 +27,9 @@ $ grunt depserve
 
 Starts a local server. Navigate to the root of that server (e.g. http://localhost:8080/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
 
-### Options
+## documentation
 
-Does this component have runtime configuration options?  If so, they should be able to be passed as attributes on the element with examples shown below.
-
-### Function calls
-
-What is the public API of this component?
-
-### Extending styles
-
-Documented CSS extension points?
-
-### Extending behavior
-
-See Polymer composition patterns
+View the demo [here](https://predixdev.github.io/px-login/px-login/demo.html).
 
 GE Coding Style Guide
 ---------------------
@@ -49,3 +37,6 @@ GE Coding Style Guide
 [GE JS Developer's Guide](https://github.com/GeneralElectric/javascript)
 
 
+## Known Issues
+
+Please use [Github Issues](https://github.com/PredixDev/px-login/issues) to submit any bugs you might find.
