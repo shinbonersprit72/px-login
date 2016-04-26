@@ -28,6 +28,6 @@ module.exports = {
     }
   },
   suites: [
-    'test/px-login-test-fixture.html'
+    'test/fixture.html'
   ]
 };
