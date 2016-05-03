@@ -6,7 +6,7 @@ var fixture;
 // upon the completion of web components construction by Polymer
 document.addEventListener("WebComponentsReady", function() {
   runBaseTests();
-  runCustomTests();
+  //runCustomTests();
 });
 
 // This is a utility/wrapper function for the test() function of
