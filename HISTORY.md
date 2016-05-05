@@ -1,3 +1,7 @@
+v0.3.1
+=================
+* added auto github pages functionality
+
 v0.3.0
 =================
 * migrated to polymer 1.4.0
