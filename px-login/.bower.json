@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": [
     "px-login.html"
   ],
@@ -11,7 +11,8 @@
     "sass",
     "bower_components",
     "node_modules",
-    "test"
+    "test",
+    "OSS_Notice.pdf"
   ],
   "dependencies": {
     "polymer": "~v1.4.0",
@@ -25,11 +26,11 @@
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.5"
   },
   "homepage": "https://github.com/PredixDev/px-login",
-  "_release": "0.3.2",
+  "_release": "0.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.2",
-    "commit": "f29279a319008f5f727ea8abf7540d1f5408323a"
+    "tag": "v0.3.3",
+    "commit": "b459c25c36192bbea86616e1704629defd255768"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.3.1",
