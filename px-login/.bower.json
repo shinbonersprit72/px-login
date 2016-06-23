@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.4.1",
+  "version": "0.4.4",
   "main": [
     "px-login.html"
   ],
@@ -26,11 +26,11 @@
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.5"
   },
   "homepage": "https://github.com/PredixDev/px-login",
-  "_release": "0.4.1",
+  "_release": "0.4.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.1",
-    "commit": "90888c7984c5c904c9f3b67806dfc7eec7b1d33a"
+    "tag": "v0.4.4",
+    "commit": "d1cccd0f4b920eb95fccc29a31e431e611adf4b4"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.4.0",

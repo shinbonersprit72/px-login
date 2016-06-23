@@ -1,3 +1,15 @@
+v0.4.4
+=================
+* Fixing es6 script import for index.html.
+
+v0.4.3
+=================
+* fix for running tests on IE.
+
+v0.4.2
+=================
+* Fixing es6 script import.
+
 v0.4.1
 =================
 * Fixing es6 path/dependency problem. Added grunt-bump task
