@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": [
     "px-login.html"
   ],
@@ -17,7 +17,7 @@
   "dependencies": {
     "polymer": "^v1.5.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~v0.8.0",
-    "es6-promise": "https://github.com/jakearchibald/es6-promise.git#2.3.0"
+    "es6-promise": "~3.0.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
@@ -26,14 +26,13 @@
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.5"
   },
   "homepage": "https://github.com/PredixDev/px-login",
-  "_release": "0.4.0",
+  "_release": "0.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.0",
-    "commit": "d4ca12c495f8442a150b5fe630e89ada7c7e52f3"
+    "tag": "v0.4.1",
+    "commit": "90888c7984c5c904c9f3b67806dfc7eec7b1d33a"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.4.0",
-  "_originalSource": "px-login",
-  "_direct": true
+  "_originalSource": "px-login"
 }
