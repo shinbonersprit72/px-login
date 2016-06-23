@@ -1,3 +1,7 @@
+v0.4.1
+=================
+* Fixing es6 path/dependency problem. Added grunt-bump task
+
 v0.4.0
 =================
 * Upgrade to Polymer 1.5.0
