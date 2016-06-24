@@ -1,3 +1,7 @@
+v0.4.5
+=================
+* Move to newer version of promise polyfill.
+
 v0.4.4
 =================
 * Fixing es6 script import for index.html.

@@ -16,7 +16,6 @@
 
     <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <script src="../bower_components/es6-promise/dist/es6-promise.min.js"></script>
     <!-- web-component-tester automatically provides local copy of brower.js below
          for any URL ending with "/web-component-tester/browser.js"
          when wct is run from the command line -->
@@ -25,14 +24,13 @@
     <!-- Retain this link for px-theme.html -->
     <!-- For some reason px-theme is needed for WCT to run without some errors -->
     <link rel="import" href="../../px-theme/px-theme.html"/>
-    <script src="../bower_components/es6-promise/promise.min.js"></script>
+    <script src="../bower_components/es6-promise/es6-promise.min.js"></script>
     <script src="px-login-tests.js"></script>
 </head>
 <body>
 
 <!-- You use the document as a place to set up your fixtures. -->
-<px-login counter-value="1" id="fixture">
-    &hearts;
+<px-login id="fixture">
 </px-login>
 
 </body>
