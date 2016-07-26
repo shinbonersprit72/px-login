@@ -1,3 +1,7 @@
+v0.4.6
+=================
+* added vulcanize to demo page gh-pages
+
 v0.4.5
 =================
 * Move to newer version of promise polyfill.
