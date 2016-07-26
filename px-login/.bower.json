@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "main": [
     "px-login.html"
   ],
@@ -12,25 +12,27 @@
     "bower_components",
     "node_modules",
     "test",
-    "OSS_Notice.pdf"
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github"
   ],
   "dependencies": {
     "polymer": "^v1.5.0",
-    "px-theme": "https://github.com/PredixDev/px-theme.git#~v0.8.0",
+    "px-theme": "~v0.8.0",
     "es6-promise": "~3.2.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
-    "px-buttons-design": "https://github.com/PredixDev/px-buttons-design.git#~0.4.0",
-    "px-list-bare-design": "https://github.com/PredixDev/px-list-bare-design.git#~0.2.8",
-    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.5"
+    "px-buttons-design": "~0.4.0",
+    "px-list-bare-design": "~0.2.8",
+    "px-starter-kit-design": "~0.4.5"
   },
   "homepage": "https://github.com/PredixDev/px-login",
-  "_release": "0.4.5",
+  "_release": "0.4.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.5",
-    "commit": "17081e08daf3d47ec53c0a6fc5909b2f2af2a66d"
+    "tag": "v0.4.6",
+    "commit": "c8efa905853ddbeb682bbebe2cee63539ffe47a3"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.4.0",
