@@ -1,3 +1,7 @@
+v0.4.7
+=================
+* fixed vulcanize script for old demos
+
 v0.4.6
 =================
 * added vulcanize to demo page gh-pages
