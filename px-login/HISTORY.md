@@ -1,3 +1,7 @@
+v0.4.8
+=================
+* added image to readme page
+
 v0.4.7
 =================
 * fixed vulcanize script for old demos

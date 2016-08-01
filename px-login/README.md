@@ -1,12 +1,13 @@
 Px-Login [![Build Status](https://travis-ci.org/PredixDev/px-login.svg?branch=master)](https://travis-ci.org/PredixDev/px-login)
 -----------------------------------------------
 
+[![px-login demo](px-login.png?raw=true)](https://github.com/PredixDev/px-login)
+
 ## Overview
 
 Px-Login is a Predix UI component
 
 ## Getting Started
-
 
 
 From the component's directory...
