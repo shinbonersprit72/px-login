@@ -27,6 +27,11 @@ module.exports = function (grunt) {
                     'css/noprefix/px-login-sketch.css': 'sass/px-login-sketch.scss',
                     'css/noprefix/px-login.css': 'sass/px-login-predix.scss'
                 }
+            },
+            demo: {
+              files: {
+                'css/noprefix/px-login-demo.css': 'sass/px-login-demo.scss'
+              }
             }
         },
 
