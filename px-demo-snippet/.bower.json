@@ -19,7 +19,7 @@
   "dependencies": {
     "polymer": "^1.5.0",
     "px-theme": "~0.8.0",
-    "px-clipboard": "^0.0.9",
+    "px-clipboard": "^0.0.11",
     "ace-widget": "~1.0.14"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
   "_resolution": {
     "type": "version",
     "tag": "v0.1.2",
-    "commit": "7facb393ebe9f8ec1dd648192f56ae95f980e5f7"
+    "commit": "4befdabbc93da5f704c55497e9132eea4cc59df1"
   },
   "_source": "https://github.com/predixdev/px-demo-snippet.git",
   "_target": "^0.1.0",
