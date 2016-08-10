@@ -92,6 +92,15 @@ module.exports = function (grunt) {
             }
           },
 
+          concurrent: {
+              devmode: {
+                  tasks: ['watch', 'depserve'],
+                  options: {
+                      logConcurrentOutput: true
+                  }
+              }
+          },
+
           bump: {
             options:{
               files: ['bower.json', 'package.json'],
@@ -111,6 +120,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-dep-serve');
     grunt.loadNpmTasks('webdriver-support');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-concurrent');
+
 
     // Default task.
     grunt.registerTask('default', 'Basic build', [
