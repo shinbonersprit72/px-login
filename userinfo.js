@@ -1,3 +1,4 @@
 {
-"user_name": "John Doe"
+"user_name": "John Doe",
+"email": "john.doe@email.com"
 }

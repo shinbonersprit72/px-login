@@ -53,171 +53,223 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 </dom-module>
 
 <script>
-    (function () {
-        window.px = window.px || {};
-        px.auth = px.auth || {
-            _loginUrl: null,
-            set loginUrl(val) {
-                this._loginUrl = val;
-            },
-            _logoutUrl: null,
-            set logoutUrl(val) {
-                this._logoutUrl = val;
-            },
-            _userInfoUrl: null,
-            set userInfoUrl(val) {
-                this._userInfoUrl = val;
-            },
-            login: function (clientPath) {
-                if (!this._loginUrl) {
-                    throw 'login url is not set';
-                }
-                if (!clientPath) {
-                  window.location.replace(this._loginUrl + '?state=' + location.href);
-                } else {
-                  //this causes an error, what should it do?
-                  window.location.replace(this._loginUrl + '?state='+ clientPath.url);
-                }
-            },
-            logout: function () {
-                if (!this._logoutUrl) {
-                    throw 'login url is not set';
-                }
-                window.location.replace(this._logoutUrl);
-            },
-            getUserInfo: function () {
-                var self = this;
-                if (!this._userInfoUrl) {
-                    throw 'userInfo url is not set';
-                }
+// Separate script for the px.auth object which may later be made into its
+// own px component
+'use strict';
+(function() {
+  // use these closure vars to achieve 'private' behavior of like-named attributes
+  var _loginUrl, _logoutUrl, _userInfoUrl;
+  window.px = window.px || {};
+  px.auth = px.auth || {
+    set loginUrl(val) {
+          _loginUrl = val;
+        }
 
-                return new Promise(function (resolve, reject) {
-                    var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState === 4) {
-                            if (xmlhttp.status === 200) {
-                                try {
-                                    resolve(JSON.parse(xmlhttp.responseText));
-                                }
-                                catch (e) {
-                                    reject(e);
-                                }
-                            }
-                            else {
-                                reject();
-                            }
-                        }
-                    };
-                    xmlhttp.open("GET", self._userInfoUrl, true);
-                    xmlhttp.send();
-                });
-            },
-            isAuthenticated: function () {
-                return this.getUserInfo();
+    , set logoutUrl(val) {
+          _logoutUrl = val;
+        }
+
+    , get userInfoUrl() {
+        return _userInfoUrl;
+    }
+
+    , set userInfoUrl(val) {
+          _userInfoUrl = val;
+        }
+
+    , login:
+      function (clientPath) {
+        if (typeof _loginUrl === 'undefined') {
+          throw 'login url is not set';
+        }
+        if (typeof clientPath === 'undefined') {
+          window.location.replace(_loginUrl + '?state=' + window.location.href);
+        } else {
+          //this causes an error, what should it do?
+          window.location.replace(_loginUrl + '?state='+ clientPath.url);
+        }
+      }
+
+    , logout:
+      function () {
+        if (typeof _logoutUrl === 'undefined') {
+          throw 'login url is not set';
+        }
+        window.location.replace(_logoutUrl);
+      }
+
+    , getUserInfo:
+      function () {
+        var self = this;
+        if (!this.userInfoUrl) {
+          throw 'userInfo url is not set';
+        }
+
+        return new Promise(function (resolve, reject) {
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4) {
+              if (xmlhttp.status === 200) {
+                try {
+                  resolve(JSON.parse(xmlhttp.responseText));
+                }
+                catch (e) {
+                  reject(e);
+                }
+              }
+              else {
+                reject();
+              }
             }
-        };
-      })();
+          };
+          xmlhttp.open("GET", self.userInfoUrl, true);
+          xmlhttp.send();
+        });
+      }
 
-        Polymer({
-            is: 'px-login',
-            properties: {
-                loginUrl: {
-                    type: String,
-                    value: '/login'
-                },
-                userInfoUrl: {
-                    type: String,
-                    value: '/userinfo'
-                },
-                logoutUrl: {
-                    type: String,
-                    value: '/logout'
-                },
-                defaultClientRoute: {
-                    type: String,
-                    value: '/about'
-                },
-                userInfo: {
-                  type: Object,
-                  value: function(){
-                    return {};
-                  }
-                },
-                /**
-                 * This menu items will display above sign out after login
-                 * e.g. user setting, user preference menu item
-                 *
-                 * menu items format
-                 * [{"url":"/user-settings", "label": "User Settings"}]
-                 */
-                menuItems: {
-                    type: Array,
-                    value: function() {
-                        return [{}];
-                    }
-                }
-            },
-            ready: function () {
-                var self = this;
-                window.px.auth.loginUrl = this.loginUrl;
-                window.px.auth.logoutUrl = this.logoutUrl;
-                window.px.auth.userInfoUrl = this.userInfoUrl;
-                window.px.auth.getUserInfo().then(function (data) {
-                  self.userInfo = data;
-                });
+      , isAuthenticated:
+        function () {
+          return this.getUserInfo();
+      }
 
-                document.body.addEventListener('nav-height-changed', this._onNavHeightChanged.bind(this));
-                document.body.addEventListener('nav-collapsing', this._onNavCollapsing.bind(this));
-                document.body.addEventListener('nav-expanded', this._onNavExpanded.bind(this));
+    };
+  }
+)();
 
-                window.onscroll = scroll;
+Polymer({
 
-                function scroll() {
-                  if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
-                    self.toggleClass('sticky', true);
-                  } else {
-                    self.toggleClass('sticky', false);
-                  }
-                }
-            },
-            _onNavExpanded: function(){
-              this.toggleClass('login--collapsed', false, this.$.logincontainer);
-            },
-            _onNavCollapsing: function(){
-              this.toggleClass('login--collapsed', true, this.$.logincontainer);
-            },
-            _onNavHeightChanged: function() {
-              if (window.innerHeight > document.body.clientHeight - 60) {
-                this.toggleClass('sticky', true);
-              } else {
-                this.toggleClass('sticky', false);
+  is: 'px-login'
+
+  , properties: {
+      loginUrl: {
+          type: String,
+          value: '/login'
+      },
+      userInfoUrl: {
+          type: String,
+          value: '/userinfo.json'
+      },
+      logoutUrl: {
+          type: String,
+          value: '/logout'
+      },
+      defaultClientRoute: {
+          type: String,
+          value: '/about'
+      },
+      userInfo: {
+        type: Object,
+        value: function() {
+          return {};
+        }
+      },
+      isAuthenticated: {
+        type: Boolean,
+        value: false,
+        notify: true
+      },
+
+      pollInterval: {
+        type: Number,
+        value: 10000
+      },
+      menuItems: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      }
+  }
+
+  , ready: function () {
+      var self = this;
+      var target = Polymer.dom(this.root).querySelector('#logincontainer').parentNode;
+      var config = { attributes: true, childList: false, characterData: false};
+
+      window.px.auth.loginUrl = this.loginUrl;
+      window.px.auth.logoutUrl = this.logoutUrl;
+      window.px.auth.userInfoUrl = this.userInfoUrl;
+      window.px.auth.getUserInfo().then(function (data) {
+        self.userInfo = data;
+      });
+
+      this.observer = new MutationObserver(
+        function(){
+          self.debounce(
+            'width-change-handler',
+            function(e){
+              if (target.clientWidth >= 219) {
+                self._onContainerExpanded();
+                return;
+              }
+              if (target.clientWidth <= 55){
+                self._onContainerCollapsed();
               }
             },
-            loginHandler: function (event, detail, sender) {
-                event.preventDefault();
-                event.stopPropagation();
+            300
+          )
+        }
+      );
+      this.observer.observe(target, config);
+      window.onscroll = scroll;
 
-                this.login();
-            },
-            logoutHandler: function (event, detail, sender) {
-                event.preventDefault();
-                event.stopPropagation();
+      function scroll() {
+        if (window.pageYOffset + window.innerHeight >= document.body.scrollHeight - 60) {
+          self.toggleClass('sticky', true);
+        } else {
+          self.toggleClass('sticky', false);
+        }
+      }
+  }
 
-                this.logout();
-            },
-            menuItemHandler: function(event){
-                event.preventDefault();
-                event.stopPropagation();
-                var targetUrl = event.currentTarget.getAttribute('url');
-                if (targetUrl){
-                    window.location = targetUrl;
-                }
-            },
-            login: function(){
-                window.px.auth.login();
-            },
-            logout: function(){
-                window.px.auth.logout();
-            }
-        });
+  , detached: function(){
+    this.observer.disconnect();
+  }
+
+  , _onContainerExpanded: function(){
+    this.toggleClass('login--collapsed', false, this.$.logincontainer);
+  }
+
+  , _onContainerCollapsed: function(){
+    this.toggleClass('login--collapsed', true, this.$.logincontainer);
+  }
+
+  , loginHandler: function (event, detail, sender) {
+    this.login();
+  }
+
+  , logoutHandler: function (event, detail, sender) {
+    event.stopPropagation();
+    this.logout();
+  }
+
+  , handleAjaxResponse: function(request) {
+    this.set('userInfo', request.detail.response);
+    this.set('isAuthenticated', true);
+  }
+
+  , handleAjaxError: function(error,a,b,c) {
+    this.login();
+  }
+
+  , login: function (clientPath) {
+      if (!this.loginUrl) {
+          throw 'login url is not set';
+      }
+      if (!clientPath) {
+        window.location.replace(this.loginUrl + '?state=' + location.href);
+      } else {
+        //this causes an error, what should it do?
+        window.location.replace(this.loginUrl + '?state='+ clientPath.url);
+      }
+  }
+
+  , logout: function () {
+    if (!this.logoutUrl) {
+      throw 'login url is not set';
+    }
+    window.location.replace(this.logoutUrl);
+  }
+
+});
 </script>
