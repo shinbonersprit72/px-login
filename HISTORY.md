@@ -1,3 +1,7 @@
+v0.4.12
+=================
+* fixed demo bugs
+
 v0.4.10
 =================
 * updated mega demo styles

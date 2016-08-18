@@ -23,7 +23,7 @@
   <!-- Wrap elements with auto-binding template to -->
   <!-- allow use of Polymer bindings in main document -->
   <template id="just-for-demo" is="dom-bind" >
-    
+
     <!-- discription -->
     <div class="hero u-p++ text--shadow">
       <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-login" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
@@ -48,19 +48,19 @@
       <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
           <section class="tab-page">
-            <div class="mega-demo flex flex--wrap u-ph++ u-pb++">
+            <div class="mega-demo flex u-ph++ u-pb++">
 
               <div class="demoContainer u-mt++">
                   <!-- demo -->
                   <div class="flex flex--col">
-                    <div class="flex__item demo u-p+">
+                    <div class="demo u-p+">
 
                     <div style="width: 450px;">
                       Look at a demo for px-login <a class="actionable" href="demo.html" target="_blank">here</a>.
                     </div>
 
                   </div>
-                  <div class="flex__item">
+                  <div>
                     <px-demo-snippet
                       element-properties={{item}}
                       element-name="px-login">
