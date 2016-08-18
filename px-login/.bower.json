@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "main": [
     "px-login.html"
   ],
@@ -40,11 +40,11 @@
     "px-buttons-design": "^0.4.26"
   },
   "homepage": "https://github.com/PredixDev/px-login",
-  "_release": "0.4.11",
+  "_release": "0.4.12",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.11",
-    "commit": "9bb152d5b9b2b2a965fe12dcb461729867a30729"
+    "tag": "v0.4.12",
+    "commit": "def5e911705def5fc796ac4c34ff9e55594ca989"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.4.0",
