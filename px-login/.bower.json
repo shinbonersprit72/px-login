@@ -44,7 +44,7 @@
   "_resolution": {
     "type": "version",
     "tag": "v0.4.12",
-    "commit": "def5e911705def5fc796ac4c34ff9e55594ca989"
+    "commit": "2d9c3dc295a68f0bae59397cb2b34ad57fa99a57"
   },
   "_source": "https://github.com/PredixDev/px-login.git",
   "_target": "^0.4.0",
