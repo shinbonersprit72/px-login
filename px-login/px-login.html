@@ -16,6 +16,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
 @homepage index.html
 @demo demo.html
 -->
+
+<link rel="import" href="css/px-login-styles.html">
+
 <dom-module id="px-login">
   <script>
     // Conditional loading of es6-promise polyfill
@@ -26,8 +29,9 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
       document.head.appendChild(script);
     }
   </script>
-  <link rel="import" type="css" href="css/px-login.css"/>
   <template>
+    <style include="px-login-styles"></style>
+    <style include="px-theme-styles"></style>
     <div id="logincontainer" class="login">
       <template is="dom-if" if="{{!userInfo.user_name}}">
         <button class="btn btn--bare" on-click="loginHandler">
