@@ -87,7 +87,7 @@ Element providing a login/logout button that integrates nicely with Cloud Foundr
                 if (!this._logoutUrl) {
                     throw 'login url is not set';
                 }
-                window.location.replace(this._logoutUrl);
+                window.location.replace(this._logoutUrl + '?v=' + Math.random());
             },
             getUserInfo: function () {
                 var self = this;
